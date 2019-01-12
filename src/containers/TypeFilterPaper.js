@@ -16,15 +16,13 @@ const styles = theme => ({
     marginLeft: 20,
     marginRight: 5
   },
-  chip: {
+  button: {
     margin: 10
   }
 });
 
 class TypeFilterPaper extends React.Component {
   handleClick = inputType => {
-    // TODO: クリックしたら視覚的にそれがわかるようにする（選択済み）
-
     // すでに選択済みだったら検索条件から取り除く
     if (this.props.filterType.includes(inputType)) {
       this.props.deleteFromFilterType(inputType);
@@ -49,17 +47,28 @@ class TypeFilterPaper extends React.Component {
               const variant = filterType.includes(type.english)
                 ? "outlined"
                 : "contained";
+              // TODO: もう少しうまくやりたい。styled-component?classnames?
+              let style;
+              if (filterType.includes(type.english)) {
+                style = {
+                  color: type["color"],
+                  fontWeight: "bold",
+                  border: "2px solid " + type["color"]
+                };
+              } else {
+                style = {
+                  backgroundColor: type["color"],
+                  color: "#FFFFFF",
+                  fontWeight: "bold"
+                };
+              }
               return (
                 <Button
                   key={type["english"]}
                   variant={variant}
                   size="small"
-                  style={{
-                    backgroundColor: type["color"],
-                    color: "#FFFFFF",
-                    fontWeight: "bold"
-                  }}
-                  className={classes.chip}
+                  style={style}
+                  className={classes.button}
                   onClick={() => this.handleClick(type["english"])}
                 >
                   {type["japanese"]}
