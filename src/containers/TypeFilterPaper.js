@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { connect } from "react-redux";
@@ -31,6 +30,12 @@ class TypeFilterPaper extends React.Component {
       this.props.deleteFromFilterType(inputType);
       return;
     }
+
+    // すでに2つ選択されているときは動作しない
+    if (this.props.filterType.length === 2) {
+      return;
+    }
+
     this.props.setFilterType(inputType);
   };
 

@@ -61,15 +61,10 @@ export function setFilterName(filterName = "") {
   };
 }
 
-// TODO: 同じタイプの重複
-// TODO: もう一度同じタイプが入力されたときに、それを削除する
 export function setFilterType(inputType) {
   return (dispatch, getState) => {
     let filterType = getState().filterType;
     filterType.push(inputType);
-    if (filterType.length > 2) {
-      filterType.shift();
-    }
     dispatch({
       type: SET_FILTER_TYPE,
       payload: {
@@ -100,8 +95,6 @@ export function filterPokemons() {
     const filterName = getState().filterName;
     const filterType = getState().filterType;
     let displayedPokemons = getState().pokemons;
-
-    console.log(filterType);
 
     // 名前でフィルタリング
     if (filterName) {
