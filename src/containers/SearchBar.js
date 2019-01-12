@@ -79,7 +79,7 @@ class SearchBar extends React.Component {
     if (event.keyCode === 8) {
       this.props.handleTextChange(event.target.value);
     }
-  }
+  };
 
   render() {
     const { classes } = this.props;

@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from 'react-router';
+import { withRouter } from "react-router";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
@@ -32,13 +32,13 @@ class PokemonCard extends React.PureComponent {
     return (
       <Card className={classes.card}>
         <CardActionArea onClick={this.handleCardClick}>
-          {/* <CardMedia
+          <CardMedia
             className={classes.media}
             image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
               pokemon.id
             }.png`}
             title={pokemon.name.japanese}
-          /> */}
+          />
           <CardContent>
             <Typography variant="subtitle1" gutterBottom>
               No. {("00" + pokemon.id).slice(-3)}

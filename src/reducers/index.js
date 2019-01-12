@@ -32,7 +32,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         filterName: action.payload.filterName
-      }
+      };
     }
     case SET_FILTER_TYPE: {
       return {

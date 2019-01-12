@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { getAllPokemon } from "../actions";
 import PokeGrid from "./PokeGrid";
 import SearchBar from "./SearchBar";
-import TypeFilterPaper from "./TypeFilterPaper"
+import TypeFilterPaper from "./TypeFilterPaper";
 import Dummy from "./Dummy";
 
 class Root extends React.Component {
