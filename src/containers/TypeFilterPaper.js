@@ -42,6 +42,7 @@ class TypeFilterPaper extends React.Component {
     return (
       <Grid container className={classes.root} justify="center">
         <Grid item xs={12}>
+          {/* TODO: Pagerだとかっこわるい。自分でdivする */}
           <Paper className={classes.paper}>
             {ALL_TYPES.map(type => {
               const variant = filterType.includes(type.english)
@@ -53,13 +54,14 @@ class TypeFilterPaper extends React.Component {
                 style = {
                   color: type["color"],
                   fontWeight: "bold",
-                  border: "2px solid " + type["color"]
+                  border: "1px solid " + type["color"]
                 };
               } else {
                 style = {
                   backgroundColor: type["color"],
                   color: "#FFFFFF",
-                  fontWeight: "bold"
+                  fontWeight: "bold",
+                  border: "1px solid " + type["color"]
                 };
               }
               return (

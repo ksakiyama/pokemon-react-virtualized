@@ -2,7 +2,13 @@
 - [x] redux
 - [x] redux-thunk
 - [x] react-virtualized
+- [ ] router, connected-react-router
 - [ ] 種族値のchart、クリックで別ページへ遷移
-- [ ] タイプで検索
-- [ ] グリッドを右寄せ
-- [ ] configure-store.jsはコピペなのでその理解
+- [x] 名前で検索
+- [x] タイプで検索
+- [ ] 検索入力でバックスペースに対応
+- [ ] グリッドを左寄せ
+- [ ] styled-component (or classnames)
+- [ ] タイプ検索のエリアをPagerではなく、もっと別の要素へ変更する
+- [x] configure-store.jsはコピペなのでその理解
+- [ ] サーバ構築

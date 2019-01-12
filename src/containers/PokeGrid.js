@@ -17,6 +17,7 @@ const styles = theme => ({
   },
   row: {
     display: "flex",
+    // TODO: 左寄せにしたい。いまは中央揃え
     justifyContent: "space-around"
   }
 });
