@@ -9,6 +9,7 @@ const ROW_HEIGHT_MARGIN = 15;
 
 const styles = theme => ({
   autosizer: {
+    // TODO: ここの計算は他のコンポーネントと動的に調整する
     height: "calc(100vh - 190px)",
     marginLeft: 5,
     marginRight: 10,

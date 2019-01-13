@@ -30,18 +30,16 @@ class TypeFilterPaper extends React.Component {
     }
 
     // すでに2つ選択されているときは動作しない
-    if (this.props.filterType.length === 2) {
-      return;
+    if (this.props.filterType.length < 2) {
+      this.props.setFilterType(inputType);
     }
-
-    this.props.setFilterType(inputType);
   };
 
   render() {
     const { classes, filterType } = this.props;
     return (
       <Grid container className={classes.root} justify="center">
-        <Grid item xs={12}>
+        <Grid item xs={12} md={10} lg={6}>
           {/* TODO: ToggleButtonにしてみるか？ */}
           <div style={divAreaStyle}>
             {ALL_TYPES.map(type => {
