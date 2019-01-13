@@ -46,9 +46,8 @@ export function setAllPokemon(data) {
 }
 
 export function setFilterName(filterName = "") {
-  // TODO: ここはdispatch => {}が不要かもしれない
   return dispatch => {
-    if (!isJapaneseString(filterName)) {
+    if (filterName !== "" && !isJapaneseString(filterName)) {
       return;
     }
     dispatch({

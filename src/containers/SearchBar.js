@@ -74,13 +74,6 @@ class SearchBar extends React.Component {
     this.props.handleTextChange(event.target.value);
   };
 
-  // FIXME: reduxForm, バックスペースが適切に反映されていない
-  handleKeyDown = event => {
-    if (event.keyCode === 8) {
-      this.props.handleTextChange(event.target.value);
-    }
-  };
-
   render() {
     const { classes } = this.props;
 
@@ -114,7 +107,6 @@ class SearchBar extends React.Component {
                   input: classes.inputInput
                 }}
                 onChange={this.handleTextChange}
-                onKeyDown={this.handleKeyDown}
               />
             </div>
           </Toolbar>
