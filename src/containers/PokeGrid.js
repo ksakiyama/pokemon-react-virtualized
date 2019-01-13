@@ -13,7 +13,8 @@ const styles = theme => ({
     height: "calc(100vh - 190px)",
     marginLeft: 5,
     marginRight: 10,
-    paddingTop: 5
+    paddingTop: 1,
+    boxShadow:"1px 1px 0px 0px #CCC inset"
   },
   row: {
     display: "flex",

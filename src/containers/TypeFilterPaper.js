@@ -44,8 +44,8 @@ class TypeFilterPaper extends React.Component {
           <div style={divAreaStyle}>
             {ALL_TYPES.map(type => {
               const variant = filterType.includes(type.english)
-                ? "flat"
-                : "raised";
+                ? "text"
+                : "contained";
               // TODO: もう少しうまくやりたい。styled-component?classnames?
               let style;
               if (filterType.includes(type.english)) {
