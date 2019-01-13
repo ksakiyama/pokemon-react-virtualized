@@ -10,7 +10,6 @@ const ROW_HEIGHT_MARGIN = 15;
 const styles = theme => ({
   autosizer: {
     height: "calc(100vh - 190px)",
-    // marginTop: 5,
     marginLeft: 5,
     marginRight: 10,
     paddingTop: 5
@@ -27,7 +26,7 @@ class PokeGrid extends React.Component {
     const { classes, pokemons } = this.props;
     return (
       <div className={classes.autosizer}>
-        <AutoSizer className={classes.autosizer}>
+        <AutoSizer>
           {({ height, width }) => {
             const itemsPerRow = Math.floor(width / CARD_WIDTH) || 1;
             const rowCount = Math.ceil(pokemons.length / itemsPerRow);

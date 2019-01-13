@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import { connect } from "react-redux";
 import { setFilterType, deleteFromFilterType } from "../actions";
 import { withStyles } from "@material-ui/core/styles";
@@ -11,15 +10,16 @@ const styles = theme => ({
   root: {
     flexGrow: 1
   },
-  paper: {
-    marginTop: 15,
-    marginLeft: 20,
-    marginRight: 5
-  },
   button: {
     margin: 10
   }
 });
+
+const divAreaStyle = {
+  marginTop: 10,
+  marginLeft: 20,
+  marginRight: 5
+};
 
 class TypeFilterPaper extends React.Component {
   handleClick = inputType => {
@@ -42,12 +42,12 @@ class TypeFilterPaper extends React.Component {
     return (
       <Grid container className={classes.root} justify="center">
         <Grid item xs={12}>
-          {/* TODO: Pagerだとかっこわるい。自分でdivする */}
-          <Paper className={classes.paper}>
+          {/* TODO: ToggleButtonにしてみるか？ */}
+          <div style={divAreaStyle}>
             {ALL_TYPES.map(type => {
               const variant = filterType.includes(type.english)
-                ? "outlined"
-                : "contained";
+                ? "flat"
+                : "raised";
               // TODO: もう少しうまくやりたい。styled-component?classnames?
               let style;
               if (filterType.includes(type.english)) {
@@ -77,7 +77,7 @@ class TypeFilterPaper extends React.Component {
                 </Button>
               );
             })}
-          </Paper>
+          </div>
         </Grid>
       </Grid>
     );
