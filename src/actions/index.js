@@ -30,7 +30,10 @@ export function getAllPokemon() {
       })
       .catch(error => {
         dispatch({
-          type: GET_ALL_POKEMON_FAILURE
+          type: GET_ALL_POKEMON_FAILURE,
+          payload: {
+            error
+          }
         });
       });
   };
