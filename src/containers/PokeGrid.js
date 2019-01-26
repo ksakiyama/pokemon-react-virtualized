@@ -9,13 +9,12 @@ const ROW_HEIGHT_MARGIN = 15;
 
 const styles = theme => ({
   autosizer: {
-    // TODO: ここの計算は他のコンポーネントと動的に調整する
-    height: "calc(100vh - 190px)",
+    height: "calc(100vh - 155px)", // TODO: 動的に調整できないか
     marginTop: 10,
     marginLeft: 5,
     marginRight: 5,
     paddingTop: 1,
-    boxShadow:"1px 1px 0px 0px #CCC inset"
+    boxShadow: "1px 1px 0px 0px #CCC inset"
   },
   row: {
     display: "flex",
@@ -27,41 +26,43 @@ const styles = theme => ({
 class PokeGrid extends React.Component {
   render() {
     const { classes, pokemons } = this.props;
+
     return (
-      <div className={classes.autosizer}>
-        <AutoSizer>
-          {({ height, width }) => {
-            const itemsPerRow = Math.floor(width / CARD_WIDTH) || 1;
-            const rowCount = Math.ceil(pokemons.length / itemsPerRow);
-            return (
-              <div>
-                <List
-                  width={width}
-                  height={height}
-                  rowCount={rowCount}
-                  rowHeight={CARD_HEIGHT + ROW_HEIGHT_MARGIN}
-                  rowRenderer={({ index, key, style }) => {
-                    const items = [];
-                    const fromIndex = index * itemsPerRow;
-                    const toIndex = Math.min(
-                      fromIndex + itemsPerRow,
-                      pokemons.length
-                    );
-                    for (let i = fromIndex; i < toIndex; i++) {
-                      items.push(<PokeCard key={i} pokemon={pokemons[i]} />);
-                    }
-                    return (
-                      <div className={classes.row} key={key} style={style}>
-                        {items}
-                      </div>
-                    );
-                  }}
-                />
-              </div>
-            );
-          }}
-        </AutoSizer>
-      </div>
+        <div className={classes.autosizer}>
+          <AutoSizer>
+            {({ height, width }) => {
+              const itemsPerRow = Math.floor(width / CARD_WIDTH) || 1;
+              const rowCount = Math.ceil(pokemons.length / itemsPerRow);
+              return (
+                <div>
+                  <List
+                    width={width}
+                    height={height}
+                    rowCount={rowCount}
+                    rowHeight={CARD_HEIGHT + ROW_HEIGHT_MARGIN}
+                    rowRenderer={({ index, key, style }) => {
+                      const items = [];
+                      const fromIndex = index * itemsPerRow;
+                      const toIndex = Math.min(
+                        fromIndex + itemsPerRow,
+                        pokemons.length
+                      );
+                      for (let i = fromIndex; i < toIndex; i++) {
+                        items.push(<PokeCard key={i} pokemon={pokemons[i]} />);
+                      }
+                      return (
+                        <div className={classes.row} key={key} style={style}>
+                          {items}
+                        </div>
+                      );
+                    }}
+                  />
+                </div>
+              );
+            }}
+          </AutoSizer>
+        </div>
+
     );
   }
 }

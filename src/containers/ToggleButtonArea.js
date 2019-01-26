@@ -6,6 +6,11 @@ import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 
 import Paper from "@material-ui/core/Paper";
 
+// import classNames from "classnames";
+// import { css } from "@emotion/core";
+// import { jsx, css } from '@emotion/core'
+// import styled from 'styled-components';
+
 const styles = theme => ({
   toggleContainer: {
     // height: 56,
@@ -23,7 +28,10 @@ const styles = theme => ({
     background: "#fff"
   },
   toggleButton: {
-    width: 100
+    fontSize: 12,
+    width: 90
+    // color: "red" // test
+    // width: 100
   }
 });
 
@@ -41,6 +49,15 @@ class ToggleButtons extends React.Component {
     const { classes } = this.props;
     const { alignment } = this.state;
 
+    // const append = `{color: "#F00"}`;
+    // const className = css({
+    //   color: "red"
+    //   // backgroundColor: "red"
+    // });
+    // const className = css`
+    //   color: hotpink;
+    // `;
+
     return (
       <React.Fragment>
         <div className={classes.toggleContainer}>
@@ -52,7 +69,7 @@ class ToggleButtons extends React.Component {
               onChange={this.handleAlignment}
             >
               <ToggleButton className={classes.toggleButton} value="type00">
-                ノーマル
+                <span style={{color: "red"}}>ノーマル</span>
               </ToggleButton>
               <ToggleButton className={classes.toggleButton} value="type01">
                 ほのお
