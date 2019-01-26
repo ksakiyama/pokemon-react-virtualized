@@ -11,7 +11,8 @@ const styles = theme => ({
     flexGrow: 1
   },
   button: {
-    margin: 10
+    width: 90, // フェアリーの文字が入るぎりぎり
+    margin: 5
   }
 });
 
@@ -50,16 +51,16 @@ class TypeFilterPaper extends React.Component {
               let style;
               if (filterType.includes(type.english)) {
                 style = {
-                  color: type["color"],
+                  // color: type["color"],
                   fontWeight: "bold",
-                  border: "1px solid " + type["color"]
+                  // border: "1px solid " + type["color"]
                 };
               } else {
                 style = {
-                  backgroundColor: type["color"],
+                  // backgroundColor: type["color"],
                   color: "#FFFFFF",
                   fontWeight: "bold",
-                  border: "1px solid " + type["color"]
+                  // border: "1px solid " + type["color"]
                 };
               }
               return (

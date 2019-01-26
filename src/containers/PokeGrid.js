@@ -11,8 +11,9 @@ const styles = theme => ({
   autosizer: {
     // TODO: ここの計算は他のコンポーネントと動的に調整する
     height: "calc(100vh - 190px)",
+    marginTop: 10,
     marginLeft: 5,
-    marginRight: 10,
+    marginRight: 5,
     paddingTop: 1,
     boxShadow:"1px 1px 0px 0px #CCC inset"
   },

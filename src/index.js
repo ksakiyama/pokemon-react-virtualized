@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 // root container
-import Root from "./containers/Root";
+import App from "./App";
 // Material ui
-import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 // Redux
 import { Provider } from "react-redux";
@@ -41,8 +40,7 @@ const store = configureStore(initialState);
 ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider theme={theme}>
-      <CssBaseline />
-      <Root />
+      <App />
     </MuiThemeProvider>
   </Provider>,
   document.getElementById("root")
