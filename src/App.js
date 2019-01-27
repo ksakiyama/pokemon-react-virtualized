@@ -11,7 +11,8 @@ import {
   MIN_WIDTH,
   CARD_WIDTH,
   CARD_HEIGHT,
-  ROW_HEIGHT_MARGIN
+  ROW_HEIGHT_MARGIN,
+  ROW_WIDTH_MARGIN
 } from "./constants";
 
 const styles = theme => ({
@@ -28,14 +29,8 @@ const styles = theme => ({
   },
   lastRow: {
     display: "flex",
-    flexFlow: "row wrap",
-    justifyContent: "space-around"
-  },
-  empty: {
-    width: CARD_WIDTH,
-    height: CARD_HEIGHT,
-    marginLeft: 5,
-    marginRight: 5
+    // flexFlow: "row wrap",
+    justifyContent: "center"
   }
 });
 
@@ -50,7 +45,11 @@ class App extends React.Component {
       <div className={classes.root}>
         <WindowScroller>
           {({ width, height, isScrolling, registerChild, scrollTop }) => {
-            const itemsPerRow = Math.floor(width / CARD_WIDTH) || 1;
+            const _width = width < MIN_WIDTH ? MIN_WIDTH : width;
+            let itemsPerRow = Math.floor(_width / CARD_WIDTH) || 1;
+            if (itemsPerRow > 1) {
+              itemsPerRow--;
+            }
             const rowCount = Math.ceil(pokemons.length / itemsPerRow);
             return (
               <React.Fragment>
@@ -67,7 +66,7 @@ class App extends React.Component {
                 <div ref={registerChild} className={classes.cardArea}>
                   <List
                     autoHeight
-                    width={width < MIN_WIDTH ? MIN_WIDTH : width}
+                    width={_width}
                     height={height}
                     isScrolling={isScrolling}
                     rowCount={rowCount}
@@ -82,6 +81,7 @@ class App extends React.Component {
                       for (let i = fromIndex; i < toIndex; i++) {
                         items.push(<PokeCard key={i} pokemon={pokemons[i]} />);
                       }
+                      // FIXME: フィルタリング時に、最終行が左寄せにならない
                       for (let i = 0; i < itemsPerRow - items.length; i++) {
                         items.push(<PokeCard key={i + toIndex} empty />);
                       }

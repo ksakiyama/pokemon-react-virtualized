@@ -1,25 +1,17 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { setFilterType, deleteFromFilterType } from "../actions";
 import { withStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-
-import Paper from "@material-ui/core/Paper";
-
-// import classNames from "classnames";
-// import { css } from "@emotion/core";
-// import { jsx, css } from '@emotion/core'
-// import styled from 'styled-components';
+import { ALL_TYPES } from "../constants";
 
 const styles = theme => ({
   toggleContainer: {
-    // height: 56,
-    // padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start"
-    // margin: `${theme.spacing.unit}px 0`,
-    // background: theme.palette.background.default
   },
   paper: {
     marginTop: 10
@@ -30,8 +22,6 @@ const styles = theme => ({
   toggleButton: {
     fontSize: 12,
     width: 90
-    // color: "red" // test
-    // width: 100
   }
 });
 
@@ -40,23 +30,20 @@ class ToggleButtons extends React.Component {
     alignment: []
   };
 
-  handleAlignment = (event, alignment) => {
-    console.log(alignment);
-    this.setState({ alignment });
+  handleClick = (event, inputType) => {
+    if (this.props.filterType.includes(inputType)) {
+      this.props.deleteFromFilterType(inputType);
+      return;
+    }
+
+    // すでに2つ選択されているときは動作しない
+    if (this.props.filterType.length < 2) {
+      this.props.setFilterType(inputType);
+    }
   };
 
   render() {
-    const { classes } = this.props;
-    const { alignment } = this.state;
-
-    // const append = `{color: "#F00"}`;
-    // const className = css({
-    //   color: "red"
-    //   // backgroundColor: "red"
-    // });
-    // const className = css`
-    //   color: hotpink;
-    // `;
+    const { classes, filterType } = this.props;
 
     return (
       <React.Fragment>
@@ -64,73 +51,64 @@ class ToggleButtons extends React.Component {
           <Paper className={classes.paper} elevation={3}>
             <ToggleButtonGroup
               className={classes.toggleGroup}
-              value={alignment}
-              exclusive={false}
-              onChange={this.handleAlignment}
+              value={filterType}
+              exclusive={true}
+              onChange={this.handleClick}
             >
-              <ToggleButton className={classes.toggleButton} value="type00">
-                <span style={{ color: "red" }}>ノーマル</span>
+              {/* TODO: use ALL_TYPES */}
+              <ToggleButton className={classes.toggleButton} value="Normal">
+                ノーマル
               </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="type01">
+              <ToggleButton className={classes.toggleButton} value="Fire">
                 ほのお
               </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="type02">
+              <ToggleButton className={classes.toggleButton} value="Water">
                 みず
               </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="type03">
+              <ToggleButton className={classes.toggleButton} value="Electric">
                 でんき
               </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="type04">
+              <ToggleButton className={classes.toggleButton} value="Grass">
                 くさ
               </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="type05">
+              <ToggleButton className={classes.toggleButton} value="Ice">
                 こおり
               </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="type06">
+              <ToggleButton className={classes.toggleButton} value="Fighting">
                 かくとう
               </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="type07">
+              <ToggleButton className={classes.toggleButton} value="Poison">
                 どく
               </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="type08">
+              <ToggleButton className={classes.toggleButton} value="Ground">
                 じめん
               </ToggleButton>
-            </ToggleButtonGroup>
-          </Paper>
-        </div>
-        <div className={classes.toggleContainer}>
-          <Paper className={classes.paper} elevation={3}>
-            <ToggleButtonGroup
-              className={classes.toggleGroup}
-              value={alignment}
-              exclusive={false}
-              onChange={this.handleAlignment}
-            >
-              <ToggleButton className={classes.toggleButton} value="type09">
+              <br />>
+              <ToggleButton className={classes.toggleButton} value="Flying">
                 ひこう
               </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="type10">
+              <ToggleButton className={classes.toggleButton} value="Psychic">
                 エスパー
               </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="type11">
+              <ToggleButton className={classes.toggleButton} value="Bug">
                 むし
               </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="type12">
+              <ToggleButton className={classes.toggleButton} value="Rock">
                 いわ
               </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="type13">
+              <ToggleButton className={classes.toggleButton} value="Ghost">
                 ゴースト
               </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="type14">
+              <ToggleButton className={classes.toggleButton} value="Dragon">
                 ドラゴン
               </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="type15">
+              <ToggleButton className={classes.toggleButton} value="Dark">
                 あく
               </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="type16">
+              <ToggleButton className={classes.toggleButton} value="Steel">
                 はがね
               </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="type17">
+              <ToggleButton className={classes.toggleButton} value="Fairy">
                 フェアリー
               </ToggleButton>
             </ToggleButtonGroup>
@@ -141,8 +119,24 @@ class ToggleButtons extends React.Component {
   }
 }
 
-ToggleButtons.propTypes = {
-  classes: PropTypes.object.isRequired
+const mapStateToProps = state => {
+  return {
+    filterType: state.filterType
+  };
 };
 
-export default withStyles(styles)(ToggleButtons);
+const mapDispatchToProps = dispatch => {
+  return {
+    setFilterType: inputType => {
+      dispatch(setFilterType(inputType));
+    },
+    deleteFromFilterType: inputType => {
+      dispatch(deleteFromFilterType(inputType));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(ToggleButtons));

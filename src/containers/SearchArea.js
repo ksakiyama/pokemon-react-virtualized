@@ -1,10 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
+
+import { connect } from "react-redux";
+import { setFilterName } from "../actions";
 
 const styles = {
   paper: {
@@ -23,21 +25,42 @@ const styles = {
   }
 };
 
-function CustomizedInputBase(props) {
-  const { classes } = props;
+class SearchArea extends React.Component {
+  handleTextChange = event => {
+    this.props.handleTextChange(event.target.value);
+  };
 
-  return (
-    <Paper className={classes.paper} elevation={3}>
-      <InputBase className={classes.input} placeholder="Search Google Maps" />
-      <IconButton className={classes.iconButton} aria-label="Search">
-        <SearchIcon />
-      </IconButton>
-    </Paper>
-  );
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <Paper className={classes.paper} elevation={3}>
+        <InputBase
+          className={classes.input}
+          placeholder="Search…"
+          onChange={this.handleTextChange}
+        />
+        <IconButton className={classes.iconButton} aria-label="Search">
+          <SearchIcon />
+        </IconButton>
+      </Paper>
+    );
+  }
 }
 
-CustomizedInputBase.propTypes = {
-  classes: PropTypes.object.isRequired
+const mapStateToProps = (state, ownProps) => {
+  return {};
 };
 
-export default withStyles(styles)(CustomizedInputBase);
+const mapDispatchToProps = dispatch => {
+  return {
+    handleTextChange: searchString => {
+      dispatch(setFilterName(searchString));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(SearchArea));
