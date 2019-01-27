@@ -1,7 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getAllPokemon } from "./actions";
-
+import Grid from "@material-ui/core/Grid";
+import { withStyles } from "@material-ui/core/styles";
+import { List, WindowScroller } from "react-virtualized";
 import PokeCard from "./components/PokeCard";
 import SearchArea from "./containers/SearchArea";
 import ToggleButtonArea from "./containers/ToggleButtonArea";
@@ -11,10 +13,6 @@ import {
   CARD_HEIGHT,
   ROW_HEIGHT_MARGIN
 } from "./constants";
-
-import Grid from "@material-ui/core/Grid";
-import { withStyles } from "@material-ui/core/styles";
-import { List, WindowScroller } from "react-virtualized";
 
 const styles = theme => ({
   root: {
