@@ -52,14 +52,14 @@ class TypeFilterPaper extends React.Component {
               if (filterType.includes(type.english)) {
                 style = {
                   // color: type["color"],
-                  fontWeight: "bold",
+                  fontWeight: "bold"
                   // border: "1px solid " + type["color"]
                 };
               } else {
                 style = {
                   // backgroundColor: type["color"],
                   color: "#FFFFFF",
-                  fontWeight: "bold",
+                  fontWeight: "bold"
                   // border: "1px solid " + type["color"]
                 };
               }

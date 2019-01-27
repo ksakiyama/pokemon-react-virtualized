@@ -28,41 +28,40 @@ class PokeGrid extends React.Component {
     const { classes, pokemons } = this.props;
 
     return (
-        <div className={classes.autosizer}>
-          <AutoSizer>
-            {({ height, width }) => {
-              const itemsPerRow = Math.floor(width / CARD_WIDTH) || 1;
-              const rowCount = Math.ceil(pokemons.length / itemsPerRow);
-              return (
-                <div>
-                  <List
-                    width={width}
-                    height={height}
-                    rowCount={rowCount}
-                    rowHeight={CARD_HEIGHT + ROW_HEIGHT_MARGIN}
-                    rowRenderer={({ index, key, style }) => {
-                      const items = [];
-                      const fromIndex = index * itemsPerRow;
-                      const toIndex = Math.min(
-                        fromIndex + itemsPerRow,
-                        pokemons.length
-                      );
-                      for (let i = fromIndex; i < toIndex; i++) {
-                        items.push(<PokeCard key={i} pokemon={pokemons[i]} />);
-                      }
-                      return (
-                        <div className={classes.row} key={key} style={style}>
-                          {items}
-                        </div>
-                      );
-                    }}
-                  />
-                </div>
-              );
-            }}
-          </AutoSizer>
-        </div>
-
+      <div className={classes.autosizer}>
+        <AutoSizer>
+          {({ height, width }) => {
+            const itemsPerRow = Math.floor(width / CARD_WIDTH) || 1;
+            const rowCount = Math.ceil(pokemons.length / itemsPerRow);
+            return (
+              <div>
+                <List
+                  width={width}
+                  height={height}
+                  rowCount={rowCount}
+                  rowHeight={CARD_HEIGHT + ROW_HEIGHT_MARGIN}
+                  rowRenderer={({ index, key, style }) => {
+                    const items = [];
+                    const fromIndex = index * itemsPerRow;
+                    const toIndex = Math.min(
+                      fromIndex + itemsPerRow,
+                      pokemons.length
+                    );
+                    for (let i = fromIndex; i < toIndex; i++) {
+                      items.push(<PokeCard key={i} pokemon={pokemons[i]} />);
+                    }
+                    return (
+                      <div className={classes.row} key={key} style={style}>
+                        {items}
+                      </div>
+                    );
+                  }}
+                />
+              </div>
+            );
+          }}
+        </AutoSizer>
+      </div>
     );
   }
 }

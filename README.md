@@ -8,7 +8,7 @@
 - [x] タイプで検索
 - [x] 検索入力でバックスペースに対応（別のバグだった）
 - [ ] AppBarを固定、下にスクロールするとAppBarの影に隠れる。タイプBarも。Keepを参考
-- [ ] グリッドを左寄せ
+- [x] グリッドを左寄せ
 - [ ] styled-component (or classnames)
 - [ ] タイプ検索のエリアをPagerではなく、もっと別の要素へ変更する
 - [x] configure-store.jsはコピペなのでその理解

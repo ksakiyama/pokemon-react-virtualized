@@ -69,7 +69,7 @@ class ToggleButtons extends React.Component {
               onChange={this.handleAlignment}
             >
               <ToggleButton className={classes.toggleButton} value="type00">
-                <span style={{color: "red"}}>ノーマル</span>
+                <span style={{ color: "red" }}>ノーマル</span>
               </ToggleButton>
               <ToggleButton className={classes.toggleButton} value="type01">
                 ほのお

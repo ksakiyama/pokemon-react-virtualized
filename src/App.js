@@ -19,12 +19,23 @@ const styles = theme => ({
     minWidth: 920
   },
   cardArea: {
-    // marginTop: 10,
+    marginTop: 10
   },
   row: {
     display: "flex",
-    // TODO: 左寄せにしたい。いまは中央揃え
+    flexFlow: "row wrap",
+    justifyContent: "center"
+  },
+  lastRow: {
+    display: "flex",
+    flexFlow: "row wrap",
     justifyContent: "space-around"
+  },
+  empty: {
+    width: CARD_WIDTH,
+    height: CARD_HEIGHT,
+    marginLeft: 5,
+    marginRight: 5
   }
 });
 
@@ -73,6 +84,14 @@ class App extends React.Component {
                       );
                       for (let i = fromIndex; i < toIndex; i++) {
                         items.push(<PokeCard key={i} pokemon={pokemons[i]} />);
+                      }
+
+                      for (
+                        let i = toIndex;
+                        i < toIndex + itemsPerRow - items.length;
+                        i++
+                      ) {
+                        items.push(<PokeCard key={i} empty />);
                       }
                       return (
                         <div className={classes.row} key={key} style={style}>

@@ -14,7 +14,8 @@ const styles = theme => ({
     width: CARD_WIDTH,
     height: CARD_HEIGHT,
     textAlign: "center",
-    marginTop: 5
+    marginLeft: 5,
+    marginRight: 5
   },
   media: {
     height: 150
@@ -28,9 +29,14 @@ class PokemonCard extends React.PureComponent {
   };
 
   render() {
-    const { classes, pokemon } = this.props;
+    const { classes, pokemon, empty } = this.props;
+
+    if (empty) {
+      return <div className={classes.card} />;
+    }
+
     return (
-      <Card className={classes.card}>
+      <Card className={classes.card} elevation={3}>
         <CardActionArea onClick={this.handleCardClick}>
           <CardMedia
             className={classes.media}
