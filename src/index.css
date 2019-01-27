@@ -9,6 +9,8 @@ body {
     横スクロールは常にONにする
     https://github.com/bvaughn/react-virtualized/issues/955
   */
+  overflow-y: scroll;
+  /* カード表示時のちらつきを抑えるため */
 }
 
 code {
