@@ -4,9 +4,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: scroll;
   /*
-    横スクロールは無効にする
+    横スクロールは常にONにする
     https://github.com/bvaughn/react-virtualized/issues/955
   */
 }

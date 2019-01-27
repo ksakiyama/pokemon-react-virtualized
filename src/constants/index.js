@@ -10,9 +10,11 @@ export const FILTER = "FILTER";
 export const SET_FILTER_NAME = "SET_FILTER_NAME";
 export const SET_FILTER_TYPE = "SET_FILTER_TYPE";
 
-// Cardのサイズ
+// React Virtualized用のstyle固定値
+export const MIN_WIDTH = 920;
 export const CARD_WIDTH = 190;
 export const CARD_HEIGHT = 280;
+export const ROW_HEIGHT_MARGIN = 15;
 
 // タイプ
 export const ALL_TYPES = [

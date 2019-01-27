@@ -1,22 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getAllPokemon } from "./actions";
-import ToggleButtonArea from "./containers/ToggleButtonArea";
-import SearchArea from "./containers/SearchArea";
-import { withStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
 
-// TODO: test window scroller
-import { List, WindowScroller } from "react-virtualized";
 import PokeCard from "./components/PokeCard";
+import SearchArea from "./containers/SearchArea";
+import ToggleButtonArea from "./containers/ToggleButtonArea";
+import {
+  MIN_WIDTH,
+  CARD_WIDTH,
+  CARD_HEIGHT,
+  ROW_HEIGHT_MARGIN
+} from "./constants";
 
-// TODO: 固定値として持つ？
-import { CARD_WIDTH, CARD_HEIGHT } from "./constants";
-const ROW_HEIGHT_MARGIN = 15;
+import Grid from "@material-ui/core/Grid";
+import { withStyles } from "@material-ui/core/styles";
+import { List, WindowScroller } from "react-virtualized";
 
 const styles = theme => ({
   root: {
-    minWidth: 920
+    minWidth: MIN_WIDTH
   },
   cardArea: {
     marginTop: 10
@@ -50,10 +52,8 @@ class App extends React.Component {
       <div className={classes.root}>
         <WindowScroller>
           {({ width, height, isScrolling, registerChild, scrollTop }) => {
-            // calc params
             const itemsPerRow = Math.floor(width / CARD_WIDTH) || 1;
             const rowCount = Math.ceil(pokemons.length / itemsPerRow);
-            // render
             return (
               <React.Fragment>
                 <Grid container justify="center">
@@ -66,11 +66,10 @@ class App extends React.Component {
                     <ToggleButtonArea />
                   </Grid>
                 </Grid>
-                {/* <PokeGrid /> */}
-                {/* TODO: 別コンポーネント化 */}
                 <div ref={registerChild} className={classes.cardArea}>
                   <List
                     autoHeight
+                    width={width < MIN_WIDTH ? MIN_WIDTH : width}
                     height={height}
                     isScrolling={isScrolling}
                     rowCount={rowCount}
@@ -85,13 +84,8 @@ class App extends React.Component {
                       for (let i = fromIndex; i < toIndex; i++) {
                         items.push(<PokeCard key={i} pokemon={pokemons[i]} />);
                       }
-
-                      for (
-                        let i = toIndex;
-                        i < toIndex + itemsPerRow - items.length;
-                        i++
-                      ) {
-                        items.push(<PokeCard key={i} empty />);
+                      for (let i = 0; i < itemsPerRow - items.length; i++) {
+                        items.push(<PokeCard key={i + toIndex} empty />);
                       }
                       return (
                         <div className={classes.row} key={key} style={style}>
@@ -100,7 +94,6 @@ class App extends React.Component {
                       );
                     }}
                     scrollTop={scrollTop}
-                    width={width}
                   />
                 </div>
               </React.Fragment>
