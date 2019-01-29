@@ -11,8 +11,7 @@ import {
   MIN_WIDTH,
   CARD_WIDTH,
   CARD_HEIGHT,
-  ROW_HEIGHT_MARGIN,
-  ROW_WIDTH_MARGIN
+  ROW_HEIGHT_MARGIN
 } from "./constants";
 
 const styles = theme => ({
@@ -46,10 +45,10 @@ class App extends React.Component {
         <WindowScroller>
           {({ width, height, isScrolling, registerChild, scrollTop }) => {
             const _width = width < MIN_WIDTH ? MIN_WIDTH : width;
-            let itemsPerRow = Math.floor(_width / CARD_WIDTH) || 1;
-            if (itemsPerRow > 1) {
-              itemsPerRow--;
-            }
+            const itemsPerRow = Math.max(
+              1,
+              Math.floor(_width / CARD_WIDTH) - 1
+            );
             const rowCount = Math.ceil(pokemons.length / itemsPerRow);
             return (
               <React.Fragment>
@@ -69,6 +68,7 @@ class App extends React.Component {
                     width={_width}
                     height={height}
                     isScrolling={isScrolling}
+                    scrollTop={scrollTop}
                     rowCount={rowCount}
                     rowHeight={CARD_HEIGHT + ROW_HEIGHT_MARGIN}
                     rowRenderer={({ index, key, style }) => {
@@ -81,8 +81,8 @@ class App extends React.Component {
                       for (let i = fromIndex; i < toIndex; i++) {
                         items.push(<PokeCard key={i} pokemon={pokemons[i]} />);
                       }
-                      // FIXME: フィルタリング時に、最終行が左寄せにならない
-                      for (let i = 0; i < itemsPerRow - items.length; i++) {
+                      const emptySize = itemsPerRow - items.length;
+                      for (let i = 0; i < emptySize; i++) {
                         items.push(<PokeCard key={i + toIndex} empty />);
                       }
                       return (
@@ -91,7 +91,6 @@ class App extends React.Component {
                         </div>
                       );
                     }}
-                    scrollTop={scrollTop}
                   />
                 </div>
               </React.Fragment>

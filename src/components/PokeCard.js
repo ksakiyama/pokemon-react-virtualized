@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
@@ -14,8 +13,7 @@ const styles = theme => ({
     width: CARD_WIDTH,
     height: CARD_HEIGHT,
     textAlign: "center",
-    marginLeft: 5,
-    marginRight: 5
+    marginRight: 10
   },
   media: {
     height: 150
