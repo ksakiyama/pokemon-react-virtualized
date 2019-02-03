@@ -23,7 +23,7 @@ const styles = theme => ({
 class PokemonCard extends React.PureComponent {
   handleCardClick = () => {
     // TODO: withRouterで遷移
-    console.log("handleCardClick");
+    // do nothing
   };
 
   render() {
@@ -34,7 +34,7 @@ class PokemonCard extends React.PureComponent {
     }
 
     return (
-      <Card className={classes.card} elevation={3}>
+      <Card className={classes.card} elevation={5}>
         <CardActionArea onClick={this.handleCardClick}>
           <CardMedia
             className={classes.media}

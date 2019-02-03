@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import { ALL_TYPES } from "../constants";
+// import { ALL_TYPES } from "../constants";
 
 const styles = theme => ({
   toggleContainer: {
