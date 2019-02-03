@@ -15,7 +15,7 @@ export function getAllPokemon() {
       type: GET_ALL_POKEMON_REQUEST
     });
 
-    return fetch("http://localhost:5000/pokemon/all")
+    return fetch("/pokemons")
       .then(response => {
         if (response.ok) {
           return response.json();
