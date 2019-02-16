@@ -1,17 +1,15 @@
-# やりたいこと
-- [x] redux
-- [x] redux-thunk
-- [x] react-virtualized
-- [x] window scroller
-- [ ] router, connected-react-router
-- [ ] 種族値のchart、クリックで別ページへ遷移
-- [x] 名前で検索
-- [x] タイプで検索
-- [x] 検索入力でバックスペースに対応（別のバグだった）
-- [ ] AppBarを固定、下にスクロールするとAppBarの影に隠れる。タイプBarも。Keepを参考
-- [x] グリッドを左寄せ
-- [x] configure-store.jsはコピペなのでその理解
-- [ ] サーバ構築
+# Pokemon List By React-Virtualized
 
-## 優先事項
-- [x] デザインのシンプル化（個人的に納得いくレベルの一覧ができるまで）
+ポケモンの一覧をReactで描画してみました。ポケモンは約800匹もいるため、[react-virtualized](https://github.com/bvaughn/react-virtualized)を使って最適化をしています。
+
+
+# デモサイト
+デモサイトは告知なく停止する場合があります。
+* [react-virtualized使用](https://pokemon-react-virtualized.firebaseapp.com/)
+* [react-virtualized未使用](https://pokemon-react-virtualized.firebaseapp.com/normal)
+
+# 参考
+* [Pokemon.json](https://github.com/fanzeyi/pokemon.json)
+* [すばらしきポケモンエコシステム⚡️](https://qiita.com/seya/items/47dc0ebae55674d8902f)
+* [AirNYT: React-Virtualized + Material-UI Cards for Fast Lists](https://appendto.com/2018/11/airnyt-react-virtualized-material-ui-cards-for-fast-lists/)
+
