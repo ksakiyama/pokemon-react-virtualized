@@ -43,7 +43,7 @@ class NormalPage extends React.Component {
           <Grid container spacing={8} align="center">
             {pokemons.map(pokemon => {
               return (
-                <Grid key={pokemon.id} item xs={3} sm={3} md={3}>
+                <Grid key={pokemon.id} item xs={3} sm={3} md={3} lg={2} xl={2}>
                   <PokeCard pokemon={pokemon} />
                 </Grid>
               );
