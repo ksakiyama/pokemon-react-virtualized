@@ -5,7 +5,6 @@ import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-// import { ALL_TYPES } from "../constants";
 
 const styles = theme => ({
   toggleContainer: {
@@ -36,7 +35,6 @@ class ToggleButtons extends React.Component {
       return;
     }
 
-    // すでに2つ選択されているときは動作しない
     if (this.props.filterType.length < 2) {
       this.props.setFilterType(inputType);
     }
@@ -55,7 +53,7 @@ class ToggleButtons extends React.Component {
               exclusive={true}
               onChange={this.handleClick}
             >
-              {/* TODO: use ALL_TYPES */}
+              {/* TODO: use ALL_TYPE from constants/index.js */}
               <ToggleButton className={classes.toggleButton} value="Normal">
                 ノーマル
               </ToggleButton>

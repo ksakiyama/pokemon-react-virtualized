@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getAllPokemon } from "./actions";
+import { setAllPokemon } from "./actions";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import { List, WindowScroller } from "react-virtualized";
@@ -35,7 +35,7 @@ const styles = theme => ({
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.getAllPokemon();
+    this.props.setAllPokemon();
   }
 
   render() {
@@ -110,8 +110,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAllPokemon: () => {
-      dispatch(getAllPokemon());
+    setAllPokemon: () => {
+      dispatch(setAllPokemon());
     }
   };
 };

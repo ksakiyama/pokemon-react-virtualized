@@ -1,49 +1,17 @@
 import {
   SET_ALL_POKEMON,
-  GET_ALL_POKEMON_REQUEST,
-  GET_ALL_POKEMON_FAILURE,
-  GET_ALL_POKEMON_SUCCESS,
   FILTER,
   SET_FILTER_NAME,
   SET_FILTER_TYPE
 } from "../constants";
 import { kanaToHira, isJapaneseString } from "../utils";
+import pokedex from "../resources/pokemon.json/pokedex.json";
 
-export function getAllPokemon() {
-  return dispatch => {
-    dispatch({
-      type: GET_ALL_POKEMON_REQUEST
-    });
-
-    return fetch("/pokemons")
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error(`${response.status}: ${response.statusText}`);
-      })
-      .then(data => {
-        dispatch({
-          type: GET_ALL_POKEMON_SUCCESS
-        });
-        dispatch(setAllPokemon(data));
-      })
-      .catch(error => {
-        dispatch({
-          type: GET_ALL_POKEMON_FAILURE,
-          payload: {
-            error
-          }
-        });
-      });
-  };
-}
-
-export function setAllPokemon(data) {
+export function setAllPokemon() {
   return {
     type: SET_ALL_POKEMON,
     payload: {
-      pokemons: data
+      pokemons: pokedex
     }
   };
 }
@@ -98,7 +66,6 @@ export function filterPokemons() {
     const filterType = getState().filterType;
     let displayedPokemons = getState().pokemons;
 
-    // 名前でフィルタリング
     if (filterName) {
       displayedPokemons = displayedPokemons.filter(pokemon => {
         const name = kanaToHira(pokemon.name.japanese);
@@ -106,7 +73,6 @@ export function filterPokemons() {
       });
     }
 
-    // タイプでフィルタリング
     if (filterType.length > 0) {
       displayedPokemons = displayedPokemons.filter(pokemon => {
         const matched = filterType.map(ft => {

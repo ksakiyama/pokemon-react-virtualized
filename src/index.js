@@ -9,7 +9,7 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Provider } from "react-redux";
 import configureStore from "./store/configure-store";
 // CSS
-import "./index.css"; // font setting
+import "./index.css";
 import "react-virtualized/styles.css";
 
 const theme = createMuiTheme({

@@ -21,10 +21,8 @@ const styles = theme => ({
 });
 
 class PokemonCard extends React.PureComponent {
-  handleCardClick = () => {
-    // TODO: withRouterで遷移
-    // do nothing
-  };
+  // TODO:
+  handleCardClick = () => {};
 
   render() {
     const { classes, pokemon, empty } = this.props;
