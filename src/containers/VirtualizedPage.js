@@ -23,7 +23,7 @@ const styles = theme => ({
   },
   row: {
     display: "flex",
-    flexFlow: "row wrap",
+    // flexFlow: "row wrap",
     justifyContent: "center"
   },
   lastRow: {
