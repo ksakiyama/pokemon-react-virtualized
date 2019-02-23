@@ -5,7 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
-import { toJapaneseType } from "../utils";
+import { translateFromEnglish } from "../utils";
 import { CARD_WIDTH, CARD_HEIGHT } from "../constants/";
 
 const styles = theme => ({
@@ -25,7 +25,7 @@ class PokemonCard extends React.PureComponent {
   handleCardClick = () => {};
 
   render() {
-    const { classes, pokemon, empty } = this.props;
+    const { classes, pokemon, language, empty } = this.props;
 
     if (empty) {
       return <div className={classes.card} />;
@@ -39,17 +39,17 @@ class PokemonCard extends React.PureComponent {
             image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
               pokemon.id
             }.png`}
-            title={pokemon.name.japanese}
+            title={pokemon.name.english}
           />
           <CardContent>
             <Typography variant="subtitle1" gutterBottom>
               No. {("00" + pokemon.id).slice(-3)}
             </Typography>
             <Typography gutterBottom variant="h6">
-              {pokemon.name.japanese}
+              {pokemon.name[language]}
             </Typography>
             <Typography gutterBottom variant="subtitle1">
-              {toJapaneseType(pokemon.type)}
+              {translateFromEnglish(pokemon.type, language)}
             </Typography>
           </CardContent>
         </CardActionArea>

@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
+import { translateFromEnglish } from "../utils";
 
 const styles = theme => ({
   toggleContainer: {
@@ -41,85 +42,84 @@ class ToggleButtons extends React.Component {
   };
 
   render() {
-    const { classes, filterType } = this.props;
+    const { classes, filterType, language } = this.props;
 
     return (
-      <React.Fragment>
-        <div className={classes.toggleContainer}>
-          <Paper className={classes.paper} elevation={3}>
-            <ToggleButtonGroup
-              className={classes.toggleGroup}
-              value={filterType}
-              exclusive={true}
-              onChange={this.handleClick}
-            >
-              {/* TODO: use ALL_TYPE from constants/index.js */}
-              <ToggleButton className={classes.toggleButton} value="Normal">
-                ノーマル
-              </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="Fire">
-                ほのお
-              </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="Water">
-                みず
-              </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="Electric">
-                でんき
-              </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="Grass">
-                くさ
-              </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="Ice">
-                こおり
-              </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="Fighting">
-                かくとう
-              </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="Poison">
-                どく
-              </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="Ground">
-                じめん
-              </ToggleButton>
-              <br />>
-              <ToggleButton className={classes.toggleButton} value="Flying">
-                ひこう
-              </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="Psychic">
-                エスパー
-              </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="Bug">
-                むし
-              </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="Rock">
-                いわ
-              </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="Ghost">
-                ゴースト
-              </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="Dragon">
-                ドラゴン
-              </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="Dark">
-                あく
-              </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="Steel">
-                はがね
-              </ToggleButton>
-              <ToggleButton className={classes.toggleButton} value="Fairy">
-                フェアリー
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </Paper>
-        </div>
-      </React.Fragment>
+      <div className={classes.toggleContainer}>
+        <Paper className={classes.paper} elevation={3}>
+          <ToggleButtonGroup
+            className={classes.toggleGroup}
+            value={filterType}
+            exclusive={true}
+            onChange={this.handleClick}
+          >
+            {/* TODO: use ALL_TYPE from constants/index.js */}
+            <ToggleButton className={classes.toggleButton} value="Normal">
+              {translateFromEnglish(["Normal"], language)}
+            </ToggleButton>
+            <ToggleButton className={classes.toggleButton} value="Fire">
+              {translateFromEnglish(["Fire"], language)}
+            </ToggleButton>
+            <ToggleButton className={classes.toggleButton} value="Water">
+              {translateFromEnglish(["Water"], language)}
+            </ToggleButton>
+            <ToggleButton className={classes.toggleButton} value="Electric">
+              {translateFromEnglish(["Electric"], language)}
+            </ToggleButton>
+            <ToggleButton className={classes.toggleButton} value="Grass">
+              {translateFromEnglish(["Grass"], language)}
+            </ToggleButton>
+            <ToggleButton className={classes.toggleButton} value="Ice">
+              {translateFromEnglish(["Ice"], language)}
+            </ToggleButton>
+            <ToggleButton className={classes.toggleButton} value="Fighting">
+              {translateFromEnglish(["Fighting"], language)}
+            </ToggleButton>
+            <ToggleButton className={classes.toggleButton} value="Poison">
+              {translateFromEnglish(["Poison"], language)}
+            </ToggleButton>
+            <ToggleButton className={classes.toggleButton} value="Ground">
+              {translateFromEnglish(["Ground"], language)}
+            </ToggleButton>
+            <br />>
+            <ToggleButton className={classes.toggleButton} value="Flying">
+              {translateFromEnglish(["Flying"], language)}
+            </ToggleButton>
+            <ToggleButton className={classes.toggleButton} value="Psychic">
+              {translateFromEnglish(["Psychic"], language)}
+            </ToggleButton>
+            <ToggleButton className={classes.toggleButton} value="Bug">
+              {translateFromEnglish(["Bug"], language)}
+            </ToggleButton>
+            <ToggleButton className={classes.toggleButton} value="Rock">
+              {translateFromEnglish(["Rock"], language)}
+            </ToggleButton>
+            <ToggleButton className={classes.toggleButton} value="Ghost">
+              {translateFromEnglish(["Ghost"], language)}
+            </ToggleButton>
+            <ToggleButton className={classes.toggleButton} value="Dragon">
+              {translateFromEnglish(["Dragon"], language)}
+            </ToggleButton>
+            <ToggleButton className={classes.toggleButton} value="Dark">
+              {translateFromEnglish(["Dark"], language)}
+            </ToggleButton>
+            <ToggleButton className={classes.toggleButton} value="Steel">
+              {translateFromEnglish(["Steel"], language)}
+            </ToggleButton>
+            <ToggleButton className={classes.toggleButton} value="Fairy">
+              {translateFromEnglish(["Fairy"], language)}
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </Paper>
+      </div>
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    filterType: state.filterType
+    filterType: state.filterType,
+    language: state.language
   };
 };
 

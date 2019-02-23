@@ -40,7 +40,7 @@ class VirtualizedPage extends React.Component {
   }
 
   render() {
-    const { classes, pokemons } = this.props;
+    const { classes, pokemons, language } = this.props;
     return (
       <div className={classes.root}>
         <WindowScroller>
@@ -83,7 +83,13 @@ class VirtualizedPage extends React.Component {
                         pokemons.length
                       );
                       for (let i = fromIndex; i < toIndex; i++) {
-                        items.push(<PokeCard key={i} pokemon={pokemons[i]} />);
+                        items.push(
+                          <PokeCard
+                            key={i}
+                            pokemon={pokemons[i]}
+                            language={language}
+                          />
+                        );
                       }
                       const emptySize = itemsPerRow - items.length;
                       for (let i = 0; i < emptySize; i++) {
@@ -108,7 +114,8 @@ class VirtualizedPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    pokemons: state.displayedPokemons
+    pokemons: state.displayedPokemons,
+    language: state.language
   };
 };
 
