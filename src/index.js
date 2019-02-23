@@ -31,6 +31,7 @@ const initialState = {
   displayedPokemons: [],
   filterName: "",
   filterType: [],
+  language: "english",
   error: null
 };
 

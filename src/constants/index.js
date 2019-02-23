@@ -2,6 +2,7 @@ export const SET_ALL_POKEMON = "SET_ALL_POKEMON";
 export const FILTER = "FILTER";
 export const SET_FILTER_NAME = "SET_FILTER_NAME";
 export const SET_FILTER_TYPE = "SET_FILTER_TYPE";
+export const CHANGE_LANG = "CHANGE_LANG";
 
 export const MIN_WIDTH = 920;
 export const CARD_WIDTH = 190;
@@ -9,7 +10,7 @@ export const CARD_HEIGHT = 280;
 export const ROW_HEIGHT_MARGIN = 15;
 export const ROW_WIDTH_MARGIN = 50;
 
-// TODO: 
+// TODO:
 export const ALL_TYPES = [
   {
     english: "Normal",

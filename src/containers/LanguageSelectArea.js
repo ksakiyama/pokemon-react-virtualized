@@ -2,10 +2,11 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
+// import FormLabel from "@material-ui/core/FormLabel";
+import { connect } from "react-redux";
+import { changeLanguage } from "../actions";
 
 const styles = theme => ({
   root: {
@@ -22,14 +23,13 @@ const styles = theme => ({
 });
 
 class LanguageSelectArea extends React.Component {
-  state = {
-    value: "japanese"
+  handleChange = event => {
+    this.props.changeLanguage(event.target.value);
   };
 
-  handleChange = () => {};
-
   render() {
-    const { classes } = this.props;
+    const { classes, language } = this.props;
+    console.log("this.prop.language = ", language);
     return (
       <div>
         <FormControl component="fieldset" className={classes.formControl}>
@@ -37,66 +37,47 @@ class LanguageSelectArea extends React.Component {
           <RadioGroup
             aria-label="Language"
             name="language"
-            value={this.state.value}
+            value={language}
             onChange={this.handleChange}
+            className={classes.root}
           >
-            <div className={classes.root}>
-              <FormControlLabel
-                value="english"
-                control={<Radio />}
-                label="English"
-              />
-              <FormControlLabel
-                value="japanese"
-                control={<Radio />}
-                label="日本語"
-              />
-              <FormControlLabel
-                value="chinese"
-                control={<Radio />}
-                label="中文"
-              />
-            </div>
+            <FormControlLabel
+              value="english"
+              control={<Radio />}
+              label="English"
+            />
+            <FormControlLabel
+              value="chinese"
+              control={<Radio />}
+              label="中文"
+            />
+            <FormControlLabel
+              value="japanese"
+              control={<Radio />}
+              label="日本語"
+            />
           </RadioGroup>
         </FormControl>
       </div>
     );
   }
-
-  render_() {
-    const { classes } = this.props;
-    return (
-      <div className={classes.root}>
-        <Radio
-          checked={this.state.selectedValue === "a"}
-          onChange={this.handleChange}
-          value="a"
-          name="radio-button-demo"
-          aria-label="AAAAAA"
-        >
-          aaa
-        </Radio>
-        <Radio
-          checked={this.state.selectedValue === "b"}
-          onChange={this.handleChange}
-          value="b"
-          name="radio-button-demo"
-          aria-label="B"
-        />
-        <Radio
-          checked={this.state.selectedValue === "c"}
-          onChange={this.handleChange}
-          value="c"
-          name="radio-button-demo"
-          aria-label="C"
-          classes={{
-            root: classes.root,
-            checked: classes.checked
-          }}
-        />
-      </div>
-    );
-  }
 }
 
-export default withStyles(styles)(LanguageSelectArea);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    language: state.language
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeLanguage: language => {
+      dispatch(changeLanguage(language));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(LanguageSelectArea));

@@ -2,18 +2,11 @@ import {
   SET_ALL_POKEMON,
   FILTER,
   SET_FILTER_NAME,
-  SET_FILTER_TYPE
+  SET_FILTER_TYPE,
+  CHANGE_LANG
 } from "../constants";
 
-const initialState = {
-  pokemons: [],
-  displayedPokemons: [],
-  filterName: "",
-  filterType: [],
-  error: null
-};
-
-export default function(state = initialState, action) {
+export default function(state, action) {
   switch (action.type) {
     case SET_ALL_POKEMON: {
       return {
@@ -39,6 +32,12 @@ export default function(state = initialState, action) {
         ...state,
         // https://redux.js.org/faq/react-redux#why-isn-t-my-component-re-rendering-or-my-mapstatetoprops-running
         filterType: action.payload.filterType.slice()
+      };
+    }
+    case CHANGE_LANG: {
+      return {
+        ...state,
+        language: action.payload.language
       };
     }
     default: {

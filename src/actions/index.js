@@ -2,7 +2,8 @@ import {
   SET_ALL_POKEMON,
   FILTER,
   SET_FILTER_NAME,
-  SET_FILTER_TYPE
+  SET_FILTER_TYPE,
+  CHANGE_LANG
 } from "../constants";
 import { kanaToHira, isJapaneseString } from "../utils";
 import pokedex from "../resources/pokemon.json/pokedex.json";
@@ -91,5 +92,14 @@ export function filterPokemons() {
         displayedPokemons
       }
     });
+  };
+}
+
+export function changeLanguage(language) {
+  return {
+    type: CHANGE_LANG,
+    payload: {
+      language
+    }
   };
 }
