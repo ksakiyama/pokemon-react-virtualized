@@ -7,6 +7,7 @@ import { List, WindowScroller } from "react-virtualized";
 import PokeCard from "../components/PokeCard";
 import SearchArea from "../containers/SearchArea";
 import ToggleButtonArea from "./ToggleButtonArea";
+import LanguageSelectArea from "./LanguageSelectArea";
 import {
   MIN_WIDTH,
   CARD_WIDTH,
@@ -55,6 +56,9 @@ class VirtualizedPage extends React.Component {
                 <Grid container justify="center">
                   <Grid item>
                     <SearchArea />
+                  </Grid>
+                  <Grid item>
+                    <LanguageSelectArea />
                   </Grid>
                 </Grid>
                 <Grid container justify="center">
