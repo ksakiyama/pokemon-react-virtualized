@@ -79,7 +79,6 @@ export function deleteFromFilterType(inputType) {
 }
 
 export function filterPokemons() {
-  // TODO: English Chinese
   return (dispatch, getState) => {
     const filterName = getState().filterName;
     const filterType = getState().filterType;
