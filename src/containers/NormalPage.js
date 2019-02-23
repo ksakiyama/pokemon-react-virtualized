@@ -6,6 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 import PokeCard from "../components/PokeCard";
 import SearchArea from "../containers/SearchArea";
 import ToggleButtonArea from "./ToggleButtonArea";
+import LanguageSelectArea from "./LanguageSelectArea";
 import { MIN_WIDTH } from "../constants";
 
 const styles = theme => ({
@@ -26,13 +27,16 @@ class NormalPage extends React.Component {
   }
 
   render() {
-    const { classes, pokemons } = this.props;
+    const { classes, pokemons, language } = this.props;
     return (
       <div className={classes.root}>
         <Grid container justify="center">
           <Grid item>
             <SearchArea />
           </Grid>
+          <Grid item>
+                    <LanguageSelectArea />
+                  </Grid>
         </Grid>
         <Grid container justify="center">
           <Grid item>
@@ -44,7 +48,7 @@ class NormalPage extends React.Component {
             {pokemons.map(pokemon => {
               return (
                 <Grid key={pokemon.id} item xs={3} sm={3} md={3} lg={2} xl={2}>
-                  <PokeCard pokemon={pokemon} />
+                  <PokeCard pokemon={pokemon} language={language} />
                 </Grid>
               );
             })}
@@ -57,7 +61,8 @@ class NormalPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    pokemons: state.displayedPokemons
+    pokemons: state.displayedPokemons,
+    language: state.language
   };
 };
 
