@@ -35,8 +35,8 @@ class NormalPage extends React.Component {
             <SearchArea />
           </Grid>
           <Grid item>
-                    <LanguageSelectArea />
-                  </Grid>
+            <LanguageSelectArea />
+          </Grid>
         </Grid>
         <Grid container justify="center">
           <Grid item>
