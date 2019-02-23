@@ -5,7 +5,7 @@ import {
   SET_FILTER_TYPE,
   CHANGE_LANG
 } from "../constants";
-import { kanaToHira, isJapaneseString } from "../utils";
+import { kanaToHira, isJapaneseString, isChineseString } from "../utils";
 import pokedex from "../resources/pokemon.json/pokedex.json";
 
 export function setAllPokemon() {
@@ -18,9 +18,26 @@ export function setAllPokemon() {
 }
 
 export function setFilterName(filterName = "") {
-  return dispatch => {
-    if (filterName !== "" && !isJapaneseString(filterName)) {
-      return;
+  return (dispatch, getState) => {
+    switch (getState().language) {
+      case "english": {
+        break;
+      }
+      case "chinese": {
+        if (filterName !== "" && !isChineseString(filterName)) {
+          return;
+        }
+        break;
+      }
+      case "japanese": {
+        if (filterName !== "" && !isJapaneseString(filterName)) {
+          return;
+        }
+        break;
+      }
+      default: {
+        return;
+      }
     }
     dispatch({
       type: SET_FILTER_NAME,
@@ -62,16 +79,39 @@ export function deleteFromFilterType(inputType) {
 }
 
 export function filterPokemons() {
+  // TODO: English Chinese
   return (dispatch, getState) => {
     const filterName = getState().filterName;
     const filterType = getState().filterType;
     let displayedPokemons = getState().pokemons;
 
     if (filterName) {
-      displayedPokemons = displayedPokemons.filter(pokemon => {
-        const name = kanaToHira(pokemon.name.japanese);
-        return name.includes(kanaToHira(filterName));
-      });
+      switch (getState().language) {
+        case "english": {
+          displayedPokemons = displayedPokemons.filter(pokemon =>
+            pokemon.name.english
+              .toLowerCase()
+              .includes(filterName.toLowerCase())
+          );
+          break;
+        }
+        case "chinese": {
+          displayedPokemons = displayedPokemons.filter(pokemon =>
+            pokemon.name.chinese.includes(filterName)
+          );
+          break;
+        }
+        case "japanese": {
+          displayedPokemons = displayedPokemons.filter(pokemon => {
+            const name = kanaToHira(pokemon.name.japanese);
+            return name.includes(kanaToHira(filterName));
+          });
+          break;
+        }
+        default: {
+          break;
+        }
+      }
     }
 
     if (filterType.length > 0) {

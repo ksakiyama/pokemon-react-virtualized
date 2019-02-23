@@ -72,3 +72,12 @@ export function isJapaneseString(str) {
     ? true
     : false;
 }
+
+// https://stackoverflow.com/questions/43418812/check-whether-a-string-contains-japanese-chinese-characters
+export function isChineseString(str) {
+  return str.match(
+    /^[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff66-\uff9f]+$/
+  )
+    ? true
+    : false;
+}
