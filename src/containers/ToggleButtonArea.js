@@ -81,7 +81,7 @@ class ToggleButtons extends React.Component {
             <ToggleButton className={classes.toggleButton} value="Ground">
               {translateFromEnglish(["Ground"], language)}
             </ToggleButton>
-            <br />>
+            <br />
             <ToggleButton className={classes.toggleButton} value="Flying">
               {translateFromEnglish(["Flying"], language)}
             </ToggleButton>
