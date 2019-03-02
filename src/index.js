@@ -13,6 +13,9 @@ import "./index.css";
 import "react-virtualized/styles.css";
 
 const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true
+  },
   palette: {
     primary: {
       main: "#5FAC62"
