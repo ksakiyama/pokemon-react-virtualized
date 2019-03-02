@@ -29,7 +29,6 @@ class LanguageSelectArea extends React.Component {
 
   render() {
     const { classes, language } = this.props;
-    console.log("this.prop.language = ", language);
     return (
       <div>
         <FormControl component="fieldset" className={classes.formControl}>
