@@ -6,9 +6,9 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import { translateFromEnglish } from "../utils";
-import { CARD_WIDTH, CARD_HEIGHT } from "../constants/";
+import { CARD_WIDTH, CARD_HEIGHT } from "../constants";
 
-const styles = theme => ({
+const styles = (theme: any) => ({
   card: {
     width: CARD_WIDTH,
     height: CARD_HEIGHT,
@@ -20,7 +20,7 @@ const styles = theme => ({
   }
 });
 
-class PokemonCard extends React.PureComponent {
+class PokemonCard extends React.PureComponent<{}, {classes: Object, pokemon: Array<Object>, language: string, empty: boolean}> {
   // TODO:
   handleCardClick = () => {};
 
